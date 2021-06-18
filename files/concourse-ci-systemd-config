@@ -1,0 +1,18 @@
+#
+# This file is managed by Juju.  Attempt no changes here.
+#
+
+[Unit]
+Description=Concourse CI
+After=network.target
+
+[Service]
+Type=simple
+# 
+Restart=always
+RestartSec=60
+#ExecStartPre=/bin/bash -c '/usr/local/sbin/concourse-ci.sh'
+ExecStart=/bin/bash -c '/usr/local/sbin/concourse-ci.sh'
+
+[Install]
+WantedBy=multi-user.target
