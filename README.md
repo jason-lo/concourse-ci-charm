@@ -6,8 +6,8 @@ Concourse-CI to be deployed on non-container cloud like LxD.
 
 ## Usage
 
-charmcraft pack
-juju deploy ./concourse-ci.charm
+    charmcraft pack
+    juju deploy ./concourse-ci.charm
 
 
 ## Developing
