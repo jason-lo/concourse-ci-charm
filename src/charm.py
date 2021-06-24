@@ -51,6 +51,9 @@ class ConcourseCiCharm(CharmBase):
             cmd = ["apt-get", "install", "-y", pkg]
             subprocess.check_call(cmd, universal_newlines=True)
 
+        #cmd = ["curl", "-o", "/root/docker-compose.yml", "-O", "https://concourse-ci.org/docker-compose.yml"]
+        #subprocess.check_call(cmd, universal_newlines=True)
+
         file_to_units('files/concourse-ci.sh', '/usr/local/sbin/concourse-ci.sh')
         file_to_units('files/concourse-ci-systemd-config', '/lib/systemd/system/concourse-ci.service')
         host.service('enable', 'concourse-ci')

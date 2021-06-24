@@ -12,7 +12,8 @@ Type=simple
 Restart=always
 RestartSec=60
 #ExecStartPre=/bin/bash -c '/usr/local/sbin/concourse-ci.sh'
-ExecStart=/bin/bash -c '/usr/local/sbin/concourse-ci.sh'
+ExecStart=/bin/bash -c '/usr/local/sbin/concourse-ci.sh start'
+ExecStop=/bin/bash -c '/usr/local/sbin/concourse-ci.sh stop'
 
 [Install]
 WantedBy=multi-user.target
