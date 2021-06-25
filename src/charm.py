@@ -41,9 +41,6 @@ class ConcourseCiCharm(CharmBase):
 
 
     def _on_install(self, event):
-        #self.unit.status = MaintenanceStatus("Installing application packages")
-
-        #config = hookenv.config()
         packages = ['curl', 'docker.io', 'docker-compose']
 
         for pkg in packages:
@@ -51,9 +48,8 @@ class ConcourseCiCharm(CharmBase):
             cmd = ["apt-get", "install", "-y", pkg]
             subprocess.check_call(cmd, universal_newlines=True)
 
-        #cmd = ["curl", "-o", "/root/docker-compose.yml", "-O", "https://concourse-ci.org/docker-compose.yml"]
-        #subprocess.check_call(cmd, universal_newlines=True)
-
+        file_to_units('files/ubuntu-sudoers', '/etc/sudoers.d/ubuntu', perms=0o440)
+        file_to_units('files/download-fly.sh', '/root/download-fly.sh')
         file_to_units('files/concourse-ci.sh', '/usr/local/sbin/concourse-ci.sh')
         file_to_units('files/concourse-ci-systemd-config', '/lib/systemd/system/concourse-ci.service')
         host.service('enable', 'concourse-ci')
@@ -113,6 +109,8 @@ class ConcourseCiCharm(CharmBase):
         else:
             host.service_start('concourse-ci')
 
+        self.unit.status = ActiveStatus()
+
     def _on_fortune_action(self, event):
         """Just an example to show how to receive actions.
 
@@ -140,7 +138,6 @@ def file_to_units(local_path, unit_path, perms=None, owner='root', group='root')
 
     with open(local_path, 'r') as fh:
         host.write_file(path=unit_path, content=fh.read().encode(), owner=owner, group=group, perms=file_perms)
-
 
 
 if __name__ == "__main__":

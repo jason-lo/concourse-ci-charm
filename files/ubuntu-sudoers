@@ -1,0 +1,5 @@
+# Created automatically during charm installation
+# Any manual changes to it will be lost
+
+# User rules for jenkins
+ubuntu ALL=(ALL) NOPASSWD: ALL
