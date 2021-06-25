@@ -8,7 +8,8 @@ Concourse-CI to be deployed on non-container cloud like LxD.
 
     charmcraft pack
     juju deploy ./concourse-ci.charm
-    you have front page on http://<public_address>:8080
+    you have front page on http://<instance_ip>:8080
+    defualt login test:test
 
 
 ## Developing
