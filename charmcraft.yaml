@@ -1,0 +1,13 @@
+type: "charm"
+charmhub:
+    api-url: https://charmhub.io/
+bases:
+  - build-on:
+    - name: "ubuntu"
+      channel: "20.04"
+    run-on:
+    - name: "ubuntu"
+      channel: "20.04"
+parts:
+  charm:
+    charm-entrypoint: "src/charm.py"
